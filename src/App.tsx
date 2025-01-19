@@ -1,7 +1,8 @@
 import {Component, createEffect} from 'solid-js';
-import Button from "./components/button";
-import arrayButtons from "./static/buttons";
+import Button from "./common/button";
+import arrayButtons from "./common/static/buttons";
 import {main} from "./logic/main";
+import {EButtonUsage} from "./common/enum";
 
 const App: Component = () => {
     createEffect(()=>{
@@ -11,13 +12,12 @@ const App: Component = () => {
 
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
-                const operation = button.innerText.trim()
+                const operation = button.innerText.trim() as EButtonUsage
                 callback(operation)
             })
         })
     })
 
-  void  main()
   return (
       <div  class="h-screen flex items-center justify-center flex-col gap-[25px] bg-slate-900">
           <div class="w-[450px] p-7 rounded-3xl box-shadow-outer bg-slate-800 ">
